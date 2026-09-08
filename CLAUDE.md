@@ -12,8 +12,9 @@ not governed by, any other repo's conventions.
 - **Single-file project.** The entire site lives in one `index.html`, with
   all CSS in inline `<style>` and all JavaScript in inline `<script>` —
   no separate `.css`/`.js` files, no build step. Tailwind CSS via CDN
-  (`<script src="https://cdn.tailwindcss.com">`) is the only external
-  dependency; no other frameworks or libraries.
+  (`<script src="https://cdn.tailwindcss.com">`) and the Google Fonts
+  linked in "Design Direction" below are the only external dependencies;
+  no other frameworks or libraries.
 - **No backend, no database.** Fully static. All state (progress) lives in
   the visitor's `localStorage`.
 - **Single fixed theme.** Clean & academic look — no dark/light toggle.
@@ -35,13 +36,45 @@ not governed by, any other repo's conventions.
 - **Working convention.** Ask clarifying questions before implementing any
   non-trivial feature — don't propose a plan until you've asked.
 
+## Design Direction (standing rule — apply to every view)
+
+Visual direction is settled: **"Warm Study Guide"** — clean & academic,
+but warm and approachable rather than austere. Every view (intro/landing,
+sidebar, every lesson) follows this look automatically; don't re-derive
+or vary it per lesson.
+
+- **Typography**: `Bitter` (500/600/700) for headings and nav labels;
+  `Mulish` (400/500/600) for body text and UI chrome. Both via Google
+  Fonts.
+- **Palette**:
+  - `bg oklch(96% 0.02 70)` (warm parchment page background)
+  - `sidebar-bg oklch(93% 0.025 65)` (slightly deeper warm tint)
+  - `text oklch(24% 0.03 50)` · `subtext oklch(48% 0.02 55)` ·
+    `subtext-faint oklch(58% 0.02 55)`
+  - `border oklch(87% 0.02 60)` · `hover-bg oklch(90% 0.02 62)` ·
+    `current-bg oklch(88% 0.03 55)` (current-lesson sidebar highlight)
+  - Accents: `accent` terracotta `#b5562f` (headings' Next button,
+    current-lesson label), `accent2` olive `#5c7a2e` (visited checkmark)
+- **Shape/spacing**: soft rounded corners (~10px) on sidebar nav items
+  and the Next button — friendlier than sharp edges, not full pills.
+  Sidebar is a fixed 280px column; main content column maxes out at
+  ~760px for readable line length; generous padding (~32px sidebar,
+  ~56px/72px main content).
+- **Layout**: left sidebar (course title, nav list: Introduction +
+  Lesson 1..N) + main content (small-caps "Lesson X of N" progress
+  label, `Bitter` heading, `Mulish` body paragraphs at 17px/1.75 line
+  height, Prev/Next row at the bottom with a top hairline border).
+  Sidebar states: visited = olive checkmark icon, current = bold
+  terracotta text on `current-bg`, upcoming = plain `subtext`.
+
 ## Feature Plan
 
 ### Phase 1 — Site skeleton (not started)
-Single `index.html`, Tailwind CDN, clean/academic style. Intro/landing
-view (title + description + Start button) → step-by-step lesson views
-(one visible at a time, Prev/Next) → persistent sidebar (all lesson
-titles, click-to-jump, highlights current, checkmark once visited).
+Single `index.html`, Tailwind CDN. Intro/landing view (title +
+description + Start button) → step-by-step lesson views (one visible at
+a time, Prev/Next) → persistent sidebar (all lesson titles, click-to-jump,
+highlights current, checkmark once visited). Styled per "Design
+Direction" above (Warm Study Guide).
 
 - [ ] Intro/landing view: title placeholder, description placeholder,
       Start button
